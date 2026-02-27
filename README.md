@@ -1,24 +1,31 @@
-# laba7
+# Stage 3 (Lab 7)
 
-Доработать программу из *лабораторной работы №6* следующим образом:
+Modify the program from **Lab Work No. 6** as follows:
 
-- Организовать хранение коллекции в реляционной СУБД **(PostgresQL)**. Убрать хранение коллекции в файле.
-- Для генерации поля id использовать средства базы данных *(sequence)*.
-- Обновлять состояние коллекции в памяти только при успешном добавлении объекта в БД
-- Все команды получения данных должны работать с коллекцией в памяти, а не в БД
-- Организовать возможность регистрации и авторизации пользователей. У пользователя есть возможность указать пароль.
-- Пароли при хранении хэшировать алгоритмом **SHA-1**
-- Запретить выполнение команд не авторизованным пользователям.
-- При хранении объектов сохранять информацию о пользователе, который создал этот объект.
-- Пользователи должны иметь возможность просмотра всех объектов коллекции, но модифицировать могут только принадлежащие им.
-- Для идентификации пользователя отправлять логин и пароль с каждым запросом.
-- Необходимо реализовать многопоточную обработку запросов.
--------
-- Для многопоточного чтения запросов использовать **Fixed thread pool**
-- Для многопотчной обработки полученного запроса использовать **Cached thread pool**
-- Для многопоточной отправки ответа использовать **Cached thread pool**
-- Для синхронизации доступа к коллекции использовать синхронизацию чтения и записи с помощью **synchronized**
-           
-  Порядок выполнения работы:
-- В качестве базы данных использовать *PostgreSQL*.
-- Для подключения к БД на кафедральном сервере использовать хост *pg*, имя базы данных - *studs*, имя пользователя/пароль совпадают с таковыми для подключения к серверу.
+- Store the collection in a relational DBMS **(PostgreSQL)**. Remove file-based collection storage.
+- Use database facilities *(a sequence)* to generate the `id` field.
+- Update the in-memory collection state only after an object has been successfully added to the database.
+- All data-retrieval commands must work with the in-memory collection, not with the database.
+- Implement user registration and authentication. A user must be able to set a password.
+- When storing passwords, hash them using the **SHA-1** algorithm.
+- Forbid execution of commands by unauthorized users.
+- When storing objects, save information about the user who created the object.
+- Users must be able to view all objects in the collection, but may modify only the objects that belong to them.
+- To identify the user, send the login and password with each request.
+- Implement multi-threaded request processing.
+
+---
+
+## Multithreading requirements
+
+- Use a **Fixed thread pool** for multi-threaded request reading.
+- Use a **Cached thread pool** for multi-threaded processing of received requests.
+- Use a **Cached thread pool** for multi-threaded response sending.
+- Use **`synchronized`** read/write synchronization to control access to the collection.
+
+---
+
+## Work order / environment
+
+- Use **PostgreSQL** as the database.
+- To connect to the database on the department server, use host **`pg`**, database name **`studs`**, and username/password the same as those used for connecting to the server.
